@@ -31,7 +31,7 @@ class _HomeState extends ConsumerState<Home> {
       appBar: AppBar(
         title: Consumer(
     builder: (context, ref, child) {
-      final allTasks = ref.watch(filterProvider('Todos')); // Obtener todas las tareas
+      final allTasks = ref.watch(filterProvider('Todos'));
       final pendingCount = allTasks.value?.where((task) => task.status == 0).length ?? 0;
       
       return Text('Lista de Tareas ($pendingCount pendientes)', style: TextStyle(fontSize: 20),);

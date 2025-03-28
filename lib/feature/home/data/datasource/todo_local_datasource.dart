@@ -32,7 +32,7 @@ class SQLiteTodoLocalDatasource {
   //Elimina las bases de datos anteriores
   Future<void> deleteOldDatabases() async {
     for (int i = 1; i < dbVersion; i++) {
-      String dbName = 'lista_${i}.db'; // Asegúrate de usar el nombre correcto
+      String dbName = 'lista_${i}.db';
       await deleteDatabase(dbName);
     }
   }

@@ -9,6 +9,8 @@ import 'package:app_todo/feature/home/domain/usecase/status_todo.dart';
 import 'package:app_todo/feature/home/domain/usecase/update_todo.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+//los providers para cada caso de uso
+
 final todoRepositoryProvider = Provider<todoRepository>((ref) {
   return TodoRepositoryImpl();
 });
