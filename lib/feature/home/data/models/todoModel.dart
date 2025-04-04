@@ -7,6 +7,7 @@ class todoModel extends Todo{
     super.id,
     required super.title,
     required super.status,
+    required super.position
 
   });
 
@@ -15,6 +16,7 @@ class todoModel extends Todo{
       id: json['id'],
       title: json['title'],
       status: json['estado'],
+      position: json['position']
     );
   }
 
@@ -23,6 +25,20 @@ class todoModel extends Todo{
       'id': id,
       'title': title,
       'estado': status,
+      'position': position
     };
+  }
+
+  todoModel copyWith({
+    int? id,
+    String? title,
+    int? status,
+  }) {
+    return todoModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      status: status ?? this.status,
+      position: position ?? this.position
+    );
   }
 }

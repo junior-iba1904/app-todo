@@ -19,6 +19,8 @@ final filterProvider = FutureProvider.family<List<todoModel>, String>((ref, cate
 });
 
 final expandedTaskIndexProvider = StateProvider<int>((ref) => -1);
+final selectedFilterProvider = StateProvider<String>((ref) => 'Todos');
+
 
 
 

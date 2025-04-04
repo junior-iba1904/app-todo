@@ -3,7 +3,7 @@ import 'package:path/path.dart';
 
 class SQLiteTodoLocalDatasource {
   Database? _database;
-  int dbVersion = 5;
+  int dbVersion = 6;
 
   Future<Database> getDatabase() async {
     if (_database != null) return _database!;
@@ -18,7 +18,7 @@ class SQLiteTodoLocalDatasource {
         join(path, 'lista_$dbVersion.db'),
         onCreate: (database, version) async {
           await database.execute(
-            "CREATE TABLE todoTable(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, estado INTEGER NOT NULL)",
+            "CREATE TABLE todoTable(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, estado INTEGER NOT NULL, position INTEGER)",
           );
           deleteOldDatabases();
         },

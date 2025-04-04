@@ -8,20 +8,35 @@ class TodoRepositoryImpl implements todoRepository {
 
   Future<Database> get _database async => await localDatasource.getDatabase();
 
-  @override
+  /*@override
   Future<void> insertTodo(todoModel mainTable) async {
     final db = await _database;
     await db.insert('todoTable', mainTable.toJson());
-  }
-
+  }*/
   @override
+  Future<int> insertTodo(todoModel task) async {
+  final db = await _database;
+  int id = await db.insert('todoTable', task.toJson());
+  return id; // Asegúrate de retornar el ID insertado
+}
+
+
+  /*@override
 Future<List<todoModel>> getAllTodo() async {
   final db = await _database;
   final List<Map<String, dynamic>> queryResult =
       await db.rawQuery('SELECT * FROM todoTable');
 
   return queryResult.map((e) => todoModel.fromJson(e)).toList();
-}
+}*/
+@override
+Future<List<todoModel>> getAllTodo() async {
+    final db = await _database;
+    final List<Map<String, dynamic>> queryResult =
+      await db.query('todoTable', orderBy: 'position ASC');
+      return queryResult.map((e) => todoModel.fromJson(e)).toList();
+  }
+
 
 
   @override
@@ -60,5 +75,12 @@ Future<List<todoModel>> getFilteredTodos(int status) async {
     whereArgs: [todoId],
   );
 }
+
+@override
+Future<void> updateTodoPosition(int id, int newPosition) async {
+    final db = await _database;
+    await db.update('todoTable', {'position': newPosition}, where: 'id = ?', whereArgs: [id]);
+  }
+
 
 }

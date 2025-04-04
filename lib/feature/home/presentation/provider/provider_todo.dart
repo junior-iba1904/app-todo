@@ -6,6 +6,7 @@ import 'package:app_todo/feature/home/domain/usecase/all_todo.dart';
 import 'package:app_todo/feature/home/domain/usecase/delete_todo.dart';
 import 'package:app_todo/feature/home/domain/usecase/filter_todo.dart';
 import 'package:app_todo/feature/home/domain/usecase/status_todo.dart';
+import 'package:app_todo/feature/home/domain/usecase/update_position.dart';
 import 'package:app_todo/feature/home/domain/usecase/update_todo.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -46,4 +47,9 @@ final getFilteredTodosProvider = FutureProvider.family<List<todoModel>, int>((re
 final updateTodoStatusProvider = Provider((ref) {
   final repository = ref.read(todoRepositoryProvider);
   return StatusTodoUseCase(repository);
+});
+
+final updatePositionTodoProvider = Provider((ref) {
+  final repository = ref.read(todoRepositoryProvider);
+  return UpdatePositionCaseUse(repository);
 });
